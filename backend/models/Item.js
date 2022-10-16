@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
 var slug = require("slug");
 var User = mongoose.model("User");
+var DEFAULT_ITEM_IMAGE_URL = "/placeholder.png"; // Keep an eye on the default image in the front end too. frontend/src/constants/default_item_image.js -- ideally we'd be able to localize this to a single place, but our backend and frontend can't share code yet.
 
 var ItemSchema = new mongoose.Schema(
   {
@@ -49,7 +50,7 @@ ItemSchema.methods.toJSONFor = function(user) {
     slug: this.slug,
     title: this.title,
     description: this.description,
-    image: this.image,
+    image: this.image || DEFAULT_ITEM_IMAGE_URL,
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,
     tagList: this.tagList,
