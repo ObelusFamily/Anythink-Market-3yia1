@@ -1,4 +1,17 @@
+import { connect } from "react-redux"
 import agent from "../../agent";
+import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
+
+
+const mapStateToProps = (state) => ({
+    ...state,
+    title: state.itemList?.title || ''
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onSearch: (title, pager, payload) =>
+        dispatch({ type: APPLY_TITLE_FILTER, title, pager, payload }),
+});
 
 export const TitleSearchBar = (props) => {
     const onChange = (ev) => {
@@ -29,4 +42,5 @@ export const TitleSearchBar = (props) => {
         </span>
     )
 }
-export default TitleSearchBar
+
+export default connect(mapStateToProps, mapDispatchToProps)(TitleSearchBar)
