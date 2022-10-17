@@ -62,7 +62,7 @@ const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
   token: state.common.token,
-  search: state.itemList.title
+  search: state.itemList.title,
 });
 
 const mapDispatchToProps = (dispatch) => ({
